@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+    {% block header %}
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url({% static 'img/Optimized-5.jpg' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Total Blogger</h1>
+                        <hr class="small">
+                        <span class="subheading">All You Need To Know In One Place</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% endblock header %}
+    {% block content %}
+    <!-- Main Content -->
+    <article class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                {% for post in posts %}
+                    <div class="post-preview">
+                        <a href="posts/{{ post.pk }}/">
+                            <h2 class="post-title">
+                                {{ post.title }}
+                            </h2>
+                            <h3 class="post-subtitle">
+                                {{ post.subtitle }}
+                            </h3>
+                        </a>
+                        <p class="post-meta">Posted by <a href="#">{{ post.author }}</a> on {{ post.published_date }}</p>
+                    </div>
+                    <hr>
+                {% endfor %}
+                <ul class="pager">
+                    <li class="next">
+                        <a href="#">Older Posts &rarr;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+    {% endblock content %}
+    {% block featured %}
+    <aside class = "featured">
+        <div class = "container">
+            <h2>Featured</h2>
+            <hr>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-preview">
+                            <a href="post.html">
+                                <h3 class="post-title">
+                                    POST 1
+                                </h3>
+                                <h3 class="post-subtitle">
+                                    Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+                                </h3>
+                            </a>
+                            <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
+                    </div>
+                    <hr>
+
+                    <div class="post-preview">
+                            <a href="post.html">
+                                <h3 class="post-title">
+                                    POST 2
+                                </h3>
+                                <h3 class="post-subtitle">
+                                    Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+                                </h3>
+                            </a>
+                            <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
+                    </div>
+                    <hr>
+
+                    <div class="post-preview">
+                            <a href="post.html">
+                                <h3 class="post-title">
+                                    POST 3
+                                </h3>
+                                <h3 class="post-subtitle">
+                                    Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+                                </h3>
+                            </a>
+                            <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
+                    </div>
+                        <hr>
+
+                </div>
+            </div>
+        </div>
+
+    </aside>
+    {% endblock featured %}
+    

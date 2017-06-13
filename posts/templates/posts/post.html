@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+    {% block Post %}
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+
+    <header class="intro-header" style="background-image: url(/{{ post.image.url }});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>{{ post.title }}</h1>
+                        <h2 class="subheading">{{ post.subtitle }}</h2>
+                        <span class="meta">Posted by <a href="#">{{ post.author }}</a> on {{post.published_date }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    {{ post.text }}
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <form class="btn-group btn-group-lg" role="group" aria-label="Like Box" style="margin-left: 40%;">
+      <button type="button" class="btn btn-default like-btn" data-href="{{ request.get_full_path }}like">
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Likes={{ post.likes }}
+      </button>
+      
+      <button type="button" class="btn btn-default dislike-btn" data-href="{{ request.get_full_path }}dislike">
+          <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>Dislikes={{ post.dislikes }}
+      </button>
+    </form>
+    <hr>
+    {% endblock Post %}
+
+

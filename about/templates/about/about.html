@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+    {% block header %}
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url({% static 'img/about-bg.jpg' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>About Us</h1>
+                        <hr class="small">
+                        <span class="subheading">This is what we do.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% endblock header %}
+    {% block content %}
+    <!-- Main Content -->
+    <!-- Team Introduction -->
+    <h2 style = "text-align: center">Our Team</h2>
+    <br>
+    <!-- Writers -->
+    <h3 style = "text-align: center">Writers</h3>
+    <br>
+    <div class = "container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="col-md-8 col-md-offset-2"> <img class="img-circle img-responsive center-block" src={% static 'img/user.png' %} alt="#"> </div>
+            </div>
+        <!-- col-md-4 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="col-md-8 col-md-offset-2"> <img class="img-circle img-responsive center-block" src={% static 'img/user.png' %} alt="#"> </div>
+            </div>
+        <!-- col-md-4 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="col-md-8 col-md-offset-2"> <img class="img-circle img-responsive center-block" src={% static 'img/user.png' %} alt="#"> </div>
+            </div>
+        <!-- col-md-4 --> 
+      </div>
+    <div class = "row">
+        <div class="col-md-4 col-sm-6 text-center">
+            <div class="col-md-8 col-md-offset-2">
+                <h4>Name</h4>
+                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna hifd.</p>
+                <div class= "row text-center">
+                    <div> <a href="#" data-toggle="tooltip" title="Contact with Facebook" class= "team-facebook"> <i class="fa fa-facebook"></i> </a> <a href="#" data-toggle="tooltip" title="Contact with Twitter" class= "team-twitter"> <i class="fa fa-twitter"></i> </a> <a href="#" data-toggle="tooltip" title="Contact with Google-plus" class= "team-google-plus"> <i class="fa fa-google-plus"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 text-center">
+            <div class="col-md-8 col-md-offset-2">
+                <h4>Name</h4>
+                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna hifd.</p>
+                <div class= "row text-center">
+                    <div> <a href="#" data-toggle="tooltip" title="Contact with Facebook" class= "team-facebook"> <i class="fa fa-facebook"></i> </a> <a href="#" data-toggle="tooltip" title="Contact with Twitter" class= "team-twitter"> <i class="fa fa-twitter"></i> </a> <a href="#" data-toggle="tooltip" title="Contact with Google-plus" class= "team-google-plus"> <i class="fa fa-google-plus"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 text-center">
+            <div class="col-md-8 col-md-offset-2">
+                <h4>Name</h4>
+                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna hifd.</p>
+                <div class= "row text-center">
+                    <div> <a href="#" data-toggle="tooltip" title="Contact with Facebook" class= "team-facebook"> <i class="fa fa-facebook"></i> </a> <a href="#" data-toggle="tooltip" title="Contact with Twitter" class= "team-twitter"> <i class="fa fa-twitter"></i> </a> <a href="#" data-toggle="tooltip" title="Contact with Google-plus" class= "team-google-plus"> <i class="fa fa-google-plus"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Photographers -->
+    <br>
+    <h3 style = "text-align: center">Photographers</h3>
+    <br>
+    <div class = "container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="col-md-8 col-md-offset-2"> <img class="img-circle img-responsive center-block" src={% static 'img/user.png' %} alt="#"> </div>
+            </div>
+        <!-- col-md-4 -->
+            <div class="col-md-4 col-sm-6">
+                <div class="col-md-8 col-md-offset-2"> <img class="img-circle img-responsive center-block" src={% static 'img/user.png' %} alt="#"> </div>
+            </div>
+        <!-- col-md-4 --> 
+      </div>
+    <div class = "row">
+        <div class="col-md-4 col-sm-6 text-center">
+            <div class="col-md-8 col-md-offset-2">
+                <h4>Name</h4>
+                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna hifd.</p>
+                <div class= "row text-center">
+                    <div> <a href="#" data-toggle="tooltip" title="Contact with Facebook" class= "team-facebook"> <i class="fa fa-facebook"></i> </a> <a href="#" data-toggle="tooltip" title="Contact with Twitter" class= "team-twitter"> <i class="fa fa-twitter"></i> </a> <a href="#" data-toggle="tooltip" title="Contact with Google-plus" class= "team-google-plus"> <i class="fa fa-google-plus"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 text-center">
+            <div class="col-md-8 col-md-offset-2">
+                <h4>Name</h4>
+                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna hifd.</p>
+                <div class= "row text-center">
+                    <div> <a href="#" data-toggle="tooltip" title="Contact with Facebook" class= "team-facebook"> <i class="fa fa-facebook"></i> </a> <a href="#" data-toggle="tooltip" title="Contact with Twitter" class= "team-twitter"> <i class="fa fa-twitter"></i> </a> <a href="#" data-toggle="tooltip" title="Contact with Google-plus" class= "team-google-plus"> <i class="fa fa-google-plus"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Developer -->
+    <br>
+    <h3 style = "text-align: center">Developers</h3>
+    <br>
+    <div class = "container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="col-md-8 col-md-offset-2"> <img class="img-circle img-responsive center-block" src={% static 'img/user.png' %} alt="#"> </div>
+            </div>
+        <!-- col-md-4 -->
+        </div>
+    <div class = "row">
+        <div class="col-md-4 col-sm-6 text-center">
+            <div class="col-md-8 col-md-offset-2">
+                <h4>Name</h4>
+                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna hifd.</p>
+                <div class= "row text-center">
+                    <div> <a href="#" data-toggle="tooltip" title="Contact with Facebook" class= "team-facebook"> <i class="fa fa-facebook"></i> </a> <a href="#" data-toggle="tooltip" title="Contact with Twitter" class= "team-twitter"> <i class="fa fa-twitter"></i> </a> <a href="#" data-toggle="tooltip" title="Contact with Google-plus" class= "team-google-plus"> <i class="fa fa-google-plus"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum molestiae debitis nobis, quod sapiente qui voluptatum, placeat magni repudiandae accusantium fugit quas labore non rerum possimus, corrupti enim modi! Et.</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    {% endblock content %}
