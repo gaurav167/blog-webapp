@@ -37,5 +37,4 @@
 ## Colophon
   - Credits -- libraries from which we've borrowed code.
   - Copyright and License -- "All Rights Reserved and Confidential"
-  - References -- [Django Documentation] (https://docs.djangoproject.com/en/1.11/)
-               -- [jQuery Documentation] (http://api.jquery.com/)
+  - References -- [Django Documentation](https://docs.djangoproject.com/en/1.11/),  [jQuery Documentation](http://api.jquery.com/)
