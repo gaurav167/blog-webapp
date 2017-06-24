@@ -34,7 +34,7 @@
 
 * **Gaurav Goel** - *Initial work* - [gaurav167](https://github.com/gaurav167)
 
-# Colophon
+## Colophon
   - Credits -- libraries from which we've borrowed code.
   - Copyright and License -- "All Rights Reserved and Confidential"
   - References -- [Django Documentation] (https://docs.djangoproject.com/en/1.11/)
