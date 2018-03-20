@@ -10,7 +10,6 @@ class Post(models.Model):
     subtitle = models.CharField(max_length=200)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
-    categories = models.TextField(default='')
     image = models.ImageField(upload_to='static/img/photo', height_field=None, width_field=None ,default='static/img/default.jpg')
     likes = models.PositiveSmallIntegerField(default=0)
     dislikes = models.PositiveSmallIntegerField(default=0)
@@ -19,5 +18,15 @@ class Post(models.Model):
         self.published_date = timezone.now()
         self.save()
 
+    def __str__(self):
+        return self.title
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=50)
+    likes = models.PositiveIntegerField(default=0)
+    dislikes = models.PositiveIntegerField(default=0)
+    assos_post = models.ForeignKey('Post')
+    
     def __str__(self):
         return self.title

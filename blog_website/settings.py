@@ -31,9 +31,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'c&laq$d1g=x=pj*b#+fbpbf_82b_iyxd5)10qr66qe$v13_jxq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'totalblogger.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'totalblogger.pythonanywhere.com']
 
 
 # Application definition
