@@ -26,7 +26,7 @@ class Category(models.Model):
     title = models.CharField(max_length=50)
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
-    assos_post = models.ForeignKey('Post')
-    
+    assos_post = models.ManyToManyField('Post')
+        
     def __str__(self):
         return self.title

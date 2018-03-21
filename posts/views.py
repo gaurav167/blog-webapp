@@ -20,17 +20,17 @@ def submit_blog(request):
 				except:
 					image = None
 			except:
-				return render(request,'error.html', {'message':'Invalid data'})
+				return render(request,'message.html', {'message':'Invalid data'})
 			try:
 				user = User.objects.get(username=author)
 			except:
-				return render(request,'error.html', {'message':'No user.'})
+				return render(request,'message.html', {'message':'No user.'})
 			try:
 				categ, created = Category.objects.get_or_create(name=categories)
 				if created:
 					categ = Category.objects.get(name=categories)
 			except:
-				return render(request,'error.html', {'message':"Couldn't. create category object."})					
+				return render(request,'message.html', {'message':"Couldn't. create category object."})					
 			try:
 				data={
 				'author':user,
@@ -40,13 +40,14 @@ def submit_blog(request):
 				}
 				new_post = Post(**data)
 				new_post.publish()
-				return render(request,'success.html', {'message':'Successfully posted.'})
+				categ.assos_post.add(new_post)
+				return render(request,'message.html', {'message':'Successfully posted.'})
 			except:
-				return render(request,'error.html', {'message':"Couldn't Post. Try again Later."})
+				return render(request,'message.html', {'message':"Couldn't Post. Try again Later."})
 		except:
-			return render(request,'error.html', {'message':"Well, you broke what you shouldn't have. Let me call your mom."})
+			return render(request,'message.html', {'message':"Well, you broke what you shouldn't have. Let me call your mom."})
 	else:
-		return render(request,'error.html', {'message':'What are you doing bruh?. Just go and fill the form.'})
+		return render(request,'message.html', {'message':'What are you doing bruh?. Just go and fill the form.'})
 
 
 def delete_post(request,id):
@@ -54,14 +55,14 @@ def delete_post(request,id):
 		try:
 			post = Post.objects.get(id=id)
 		except:
-			return render(request,'error.html', {'message':"Couldn't find the post."})
+			return render(request,'message.html', {'message':"Couldn't find the post."})
 		try:
 			post.delete()
-			return render(request,'success.html', {'message':"Successfully deleted."})
+			return render(request,'message.html', {'message':"Successfully deleted."})
 		except:
-			return render(request,'error.html', {'message':"Couldn't delete the post at the moment. Please try again later."})
+			return render(request,'message.html', {'message':"Couldn't delete the post at the moment. Please try again later."})
 	else:
-		return render(request,'error.html', {'message':"Nah bro! That's not how you do it. Go back and do it the way others do, you piece of a hacker!"})
+		return render(request,'message.html', {'message':"Nah bro! That's not how you do it. Go back and do it the way others do, you piece of a hacker!"})
 
 
 def index(request):
@@ -73,7 +74,12 @@ def page_by_num(request,pk):
 	return render(request,'posts/post.html',{'post' : posts, 'name' : posts.title})
 
 def page_by_name(request,category):
-	posts = get_object_or_404(Post, category in categories)
+	# posts = get_object_or_404(Post, category in categories)
+	try:
+		categ = Category.objects.get(name=category)
+	except:
+		return render(request,'message.html', {'message':"No category found by the name {}.".format(category)})
+	posts = categ.assos_post.all()
 	return render(request,'posts/post.html',{'post' : posts})
 
 def liked(request,num):
@@ -106,19 +112,19 @@ def submit_category(request):
 		try:
 			name = request.POST.get('category').lower()
 		except:
-			return render(request,'error.html', {'message':"Invalid data."})
+			return render(request,'message.html', {'message':"Invalid data."})
 		try:
 			categ = Category.objects.get(name=name)
-			return render(request,'error.html', {'message':"Category {} already exists.".format(name)})
+			return render(request,'message.html', {'message':"Category {} already exists.".format(name)})
 		except:
 			try:
 				categ = Category.objects.create(name=name)
 			except:
-				return render(request,'error.html', {'message':"Couldn't create this category at the moment. Please try again later. Seeya!"})
+				return render(request,'message.html', {'message':"Couldn't create this category at the moment. Please try again later. Seeya!"})
 			else:
-				return render(request,'success.html', {'message':"Successfully created the category."})
+				return render(request,'message.html', {'message':"Successfully created the category."})
 	else:
-		return render(request,'error.html', {'message':"Na Na Na! I will not accept this. Just fill the freaking form, will ya?"})
+		return render(request,'message.html', {'message':"Na Na Na! I will not accept this. Just fill the freaking form, will ya?"})
 
 
 def all_categs(request):
@@ -129,7 +135,7 @@ def all_categs(request):
 			if request.is_ajax():
 				return JsonResponse({'status':'failed','message':'No categories'})
 			else:
-				return render(request,'error.html', {'message':"No category."})
+				return render(request,'message.html', {'message':"No category."})
 		if request.is_ajax():
 			data = serializers.serialize('json', categories)
 			return JsonResponse(data, safe=False)
@@ -139,7 +145,7 @@ def all_categs(request):
 		if request.is_ajax():
 			return JsonResponse({'error':'Only available via GET.','status_code':'400'})
 		else:
-			return render(request,'error.html', {'message':"Hmm! Search through your browser."})
+			return render(request,'message.html', {'message':"Hmm! Search through your browser."})
 
 
 
