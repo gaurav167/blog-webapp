@@ -27,6 +27,20 @@ class Category(models.Model):
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
     assos_post = models.ManyToManyField('Post')
-        
+
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    author = models.ForeignKey('auth.User')
+    content = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now)
+    on_post = models.ForeignKey('Post')
+
+    def publish(self):
+        self.created_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return self.author.username

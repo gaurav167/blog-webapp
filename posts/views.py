@@ -10,7 +10,7 @@ def submit_blog(request):
 	if request.method == "POST":
 		try:
 			try:
-				author = request.POST.get('author')
+				author = request.user
 				title = request.POST.get('title')
 				subtitle = request.POST.get('subtitle')
 				text = request.POST.get('text')
@@ -21,10 +21,10 @@ def submit_blog(request):
 					image = None
 			except:
 				return render(request,'message.html', {'message':'Invalid data'})
-			try:
-				user = User.objects.get(username=author)
-			except:
-				return render(request,'message.html', {'message':'No user.'})
+			# try:
+			# 	user = User.objects.get(username=author)
+			# except:
+			# 	return render(request,'message.html', {'message':'No user.'})
 			try:
 				categ, created = Category.objects.get_or_create(name=categories)
 				if created:
@@ -170,17 +170,56 @@ def category_respond(request,name,action):
 		return JsonResponse({'error':'Only available via PUT.','status_code':'400'})
 
 
-@csrf_exempt
 def delete_categ(request,id):
 	if request.method == 'DELETE':
 		try:
 			categ = Category.objects.get(pk=id)
 		except:
-			return JsonResponse({'status':'failed','message':'Category does not exist'})
+			return render(request,'message.html', {'message':"Couldn't find the category."})
 		try:
 			categ.delete()
-			return JsonResponse({'status':'success'})
+			return render(request,'message.html', {'message':"Successfully Deleted!"})
 		except:
-			return JsonResponse({'status':'failed','message':'Cannot delete category at the moment.'})
+			return render(request,'message.html', {'message':"Can't delete at the moment. Try again later!"})
 	else:
-		return JsonResponse({'error':'Only available via DELETE.','status_code':'400'})
+		return render(request,'message.html', {'message':"You can't delete like that yo!"})
+
+
+# Comment Views
+
+def comment(request):
+	if request.method == "POST":
+		author = request.user
+		content = request.POST.get('content')
+		post_id = request.POST.get('post_id')
+		try:
+			post = Post.objects.get(id=post_id)
+		except:
+			return render(request,'message.html', {'message':'No Post.'})
+		try:
+			data = {
+			'author':author,
+			'content':content,
+			'post':post
+			}
+			comment = Comment(**data)
+			comment.publish()
+		except:
+			return render(request,'message.html', {'message':"Coudn't Comment at the moment. Please try again later.."})			
+	else:
+		return render(request,'message.html', {'message':"That's not a nice way to comment.."})
+
+
+def delete_comment(request,id):
+	if request.method == 'DELETE':
+		try:
+			comment = Comment.objects.get(id=id)
+		except:
+			return render(request,'message.html', {'message':"Couldn't find the comment."})
+		try:
+			comment.delete()
+			return render(request,'message.html', {'message':"Successfully Deleted!"})
+		except:
+			return render(request,'message.html', {'message':"Can't delete at the moment. Try again later!"})
+	else:
+		return render(request,'message.html', {'message':"You can't delete like that yo!"})

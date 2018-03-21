@@ -14,5 +14,7 @@ urlpatterns=[
 	url(r'^category/submit/$', views.submit_category, name='submit_category'),
 	url(r'^category/delete/(?P<id>)\d+/$', views.delete_categ, name='delete_categ'),
 
+	url(r'^comment/submit/$', views.comment, name='comment'),
+	url(r'^comment/delete/(?P<id>)\d+/$', views.delete_comment, name='delete_comment'),
 
 ]
