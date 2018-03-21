@@ -41,7 +41,42 @@
           <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>Dislikes={{ post.dislikes }}
       </button>
     </form>
+    {% if user.is_authenticated %}
+    <form class="comment" method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <button id="comment" type="submit" class="btn btn-default">Comment</button>
+        <div id="com_message text-center" class='alert'></div>
+    </form>
+    {% endif %}
     <hr>
     {% endblock Post %}
 
 
+    {% block comment %}
+    <script type="text/javascript">
+        $("label[for='id_content']").html('Comment :');
+        $("#id_on_post").attr({type: 'hidden'});
+        $("#id_on_post option[value='{{ post.id }}']").attr("selected", "selected");
+        $("#id_on_post").addClass('hidden');
+        $("label[for='id_on_post']").addClass('hidden');
+        $('textarea').autoResize();
+    </script>
+    <style type="text/css">
+        .comment{
+            margin-left: 30vw;
+        }
+        label{
+            padding: 5px;
+            display: block;
+        }
+        #id_content{
+            resize: none;
+            overflow: auto;
+            width: 600px;
+            height: 120px;
+            border: 3px solid #cccccc;
+            padding: 5px;
+            font-family: Tahoma, sans-serif;
+        }
+    </style>
+    {% endblock comment %}

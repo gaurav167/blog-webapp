@@ -1,8 +1,10 @@
-from django.shortcuts import render, get_object_or_404
-from django.utils import timezone
-from .models import Post
-from django.http import HttpResponse
+from django.shortcuts import render
+from django.http import HttpResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
+
+from .models import Post, Comment, Category
+from .forms import PostForm, CommentForm, CategoryForm
 
 
 # Create your views here.
@@ -70,11 +72,17 @@ def index(request):
 	return render(request,'posts/all_post.html',{'posts' : posts, 'name' : 'All Posts'})
 
 def page_by_num(request,pk):
-	posts = get_object_or_404(Post, pk=pk)
-	return render(request,'posts/post.html',{'post' : posts, 'name' : posts.title})
+	if request.method == "POST":
+		return comment(request)
+	else:
+		try:	
+			form = CommentForm()
+			posts = Post.objects.get(pk=pk)
+			return render(request,'posts/post.html',{'post' : posts, 'name' : posts.title, 'form' : form})
+		except Exception as e:
+			raise Http404
 
 def page_by_name(request,category):
-	# posts = get_object_or_404(Post, category in categories)
 	try:
 		categ = Category.objects.get(name=category)
 	except:
@@ -189,22 +197,17 @@ def delete_categ(request,id):
 
 def comment(request):
 	if request.method == "POST":
-		author = request.user
-		content = request.POST.get('content')
-		post_id = request.POST.get('post_id')
 		try:
-			post = Post.objects.get(id=post_id)
-		except:
-			return render(request,'message.html', {'message':'No Post.'})
-		try:
-			data = {
-			'author':author,
-			'content':content,
-			'post':post
-			}
-			comment = Comment(**data)
-			comment.publish()
-		except:
+			form = CommentForm(request.POST)
+			if form.is_valid():
+				comment = form.save(commit=False)
+				comment.author = request.user
+				comment.created_date = timezone.now()
+				comment.save()
+			# return redirect(request.build_absolute_url())
+			return render(request,'message.html', {'message':"Successfully Posted"})
+		except Exception as e:
+			# raise e
 			return render(request,'message.html', {'message':"Coudn't Comment at the moment. Please try again later.."})			
 	else:
 		return render(request,'message.html', {'message':"That's not a nice way to comment.."})
