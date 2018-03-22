@@ -52,7 +52,43 @@
     {% endblock Post %}
 
 
-    {% block comment %}
+    {% block custom %}
+    <!-- Like button on Posts -->
+    <script type="text/javascript">
+        //for like button
+        $(".like-btn").click(function(e){
+            e.preventDefault();
+            data_url = $(this).attr("data-href");
+            check = $(".like-btn").hasClass('disable');
+            $.ajax({
+                type:'GET',
+                url:data_url,
+                data : {'active' : check},
+                success:function(data){
+                    html = "<span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>Likes="+data;
+                    $(".like-btn").html(html);
+                    $(".like-btn").toggleClass('disable');
+                }
+            });
+        });
+        //for dislike button
+        $(".dislike-btn").click(function(e){
+            e.preventDefault();
+            data_url = $(this).attr("data-href");
+            check = $(".dislike-btn").hasClass('disable');
+            $.ajax({
+                type:'GET',
+                url:data_url,
+                data : {'active' : check},
+                success:function(data){
+                    html = "<span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span>Dislikes="+data;
+                    $(".dislike-btn").html(html);
+                    $(".dislike-btn").toggleClass('disable');
+                }
+            });
+        });
+    </script>
+
     <script type="text/javascript">
         $("label[for='id_content']").html('Comment :');
         $("#id_on_post").attr({type: 'hidden'});
@@ -61,6 +97,7 @@
         $("label[for='id_on_post']").addClass('hidden');
         $('textarea').autoResize();
     </script>
+    
     <style type="text/css">
         .comment{
             margin-left: 30vw;
@@ -79,4 +116,4 @@
             font-family: Tahoma, sans-serif;
         }
     </style>
-    {% endblock comment %}
+    {% endblock custom %}

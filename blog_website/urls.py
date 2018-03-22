@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^write/', include('write.urls')),
     url(r'^contact/', include('contact.urls')),
     url(r'^about/', include('about.urls')),
+    url(r'^profile/', include('users.urls')),
 ]

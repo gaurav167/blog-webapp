@@ -114,6 +114,15 @@
                         <a href="{% url 'write' %}">Write</a>
                     </li>
                     {% endif %}
+                    {% if name == 'Login' %}
+                    <li class = 'active'>
+                        <a href="{% url 'login' %}">Login</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">Login</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -162,7 +171,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Total Blogger 2017</p>
+                    <p class="copyright text-muted">Copyright &copy; Total Blogger </p>
                 </div>
             </div>
         </div>
@@ -181,45 +190,15 @@
     <!-- Theme JavaScript -->
     <script src="{%static 'js/total-blogger.min.js' %}"></script>
 
-    <!-- Like button on Posts -->
+    <!-- Dynamic footer year -->
     <script type="text/javascript">
-        //for like button
-        $(".like-btn").click(function(e){
-            e.preventDefault();
-            data_url = $(this).attr("data-href");
-            check = $(".like-btn").hasClass('disable');
-            $.ajax({
-                type:'GET',
-                url:data_url,
-                data : {'active' : check},
-                success:function(data){
-                    html = "<span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>Likes="+data;
-                    $(".like-btn").html(html);
-                    $(".like-btn").toggleClass('disable');
-                }
-            });
-        });
-        //for dislike button
-        $(".dislike-btn").click(function(e){
-            e.preventDefault();
-            data_url = $(this).attr("data-href");
-            check = $(".dislike-btn").hasClass('disable');
-            $.ajax({
-                type:'GET',
-                url:data_url,
-                data : {'active' : check},
-                success:function(data){
-                    html = "<span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span>Dislikes="+data;
-                    $(".dislike-btn").html(html);
-                    $(".dislike-btn").toggleClass('disable');
-                }
-            });
-        });
+        $('.copyright').html($('.copyright').html() + new Date().getFullYear());
     </script>
+
     {% block contact_form %}
     {% endblock contact_form %}
-    {% block comment %}
-    {% endblock comment %}
+    {% block custom %}
+    {% endblock custom %}
 </body>
 
 </html>

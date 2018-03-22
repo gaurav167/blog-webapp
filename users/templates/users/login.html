@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block header %}
+<header class="intro-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-12 com-xs-12 login">
+                    <div class="post-heading">
+                        <h2>Login</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-12 col-xs-12">
+                   	<form method="POST" id="login_field">{% csrf_token %}
+                   		<input type="text" name="username" placeholder="Username" required>
+                  		<input type="password" name="password" placeholder="Password" required>
+                   		<button type="submit" id="submit">Login</button>
+                  	</form>
+               	</div>
+            </div>
+        </div>
+    </header>
+
+{% endblock header %}
+
+
+{% block content %}
+
+
+<style type="text/css">
+	.intro-header:before{
+		content: "";
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1;
+
+		display: block;
+		background-image: url("{% static 'img/login.jpg' %}");
+		background-size: cover;
+
+		width: 100%;
+		height: 100%;
+		  
+		-webkit-filter: blur(5px);
+		-moz-filter: blur(5px);
+		-o-filter: blur(5px);
+		-ms-filter: blur(5px);
+		 filter: blur(15px);
+	}
+
+	.intro-header {
+		overflow: auto;
+		position: relative;
+	}
+
+	#login_field > input{
+		display: block;
+		margin : 2em 0em;
+	}
+	.row{
+		margin-top: 10vh;
+	}
+	.login{
+		height: 25vh;
+	}
+</style>
+{% endblock content %}
+
+
+{% block custom %}
+<script type="text/javascript">
+	$('#submit').click(function(e){
+		// e.preventDefault();
+		var data_url = "{% url 'login' %}";
+		var usr = $('input[name="username"]').val();
+		var pass = $('input[name="password"]').val();
+		$.ajax({
+		    type:'POST',
+		    url:data_url,
+		    data : {'username' : usr, 'password' : pass},
+		    }
+		})
+	});
+
+</script>
+	
+{% endblock custom %}
