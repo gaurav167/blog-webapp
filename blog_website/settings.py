@@ -87,17 +87,26 @@ WSGI_APPLICATION = 'blog_website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         #'USER': 'root',
+#         #'PASSWORD': 'testmachine',
+#         'HOST': '127.0.0.1',
+#         #'PORT': '3306',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        #'USER': 'root',
-        #'PASSWORD': 'testmachine',
-        'HOST': '127.0.0.1',
-        #'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd842494sr3s75e',                      
+        'USER': 'gsjdrdbutnvlzq',
+        'PASSWORD': 'fcf76baf152019887961db74e99b39ace79f2f6d9e44c0f7a353b13fb045abfb',
+        'HOST': 'ec2-54-83-23-91.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
