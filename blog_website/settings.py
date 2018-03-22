@@ -33,7 +33,7 @@ SECRET_KEY = 'c&laq$d1g=x=pj*b#+fbpbf_82b_iyxd5)10qr66qe$v13_jxq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'totalblogger.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'totalblogger.pythonanywhere.com', 'itsblog.herokuapp.com']
 
 
 # Application definition
@@ -139,3 +139,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
